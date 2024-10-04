@@ -131,6 +131,6 @@ li a:hover {
     margin: 30px;
     position: relative;
     border-radius: 6px;
-    background-color: aqua;
+    background-color: rgb(0, 124, 212);
     height: 12px;
 }
