@@ -1,293 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Portofolio IT - Fairus</title>
     <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-        background-color: rgb(0, 0, 0);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
+            background: #0f0f0f;
+            color: white;
+            line-height: 1.6;
         }
 
-        nav {
+        /* Header & Navigasi */
+        header {
+            position: fixed;
+            width: 100%;
             top: 0;
-            position: sticky;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            z-index: 1000;
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            background-color: black;
-            padding-top: 0;
-            height: 70px;
-        }
-
-        .nav-links {
+        .nav-container {
+            width: 90%;
+            margin: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            list-style: none;
-            width: 80%;
-            margin: 0;
-            padding: 0;
-            margin-top: 30px;
-            margin-bottom: 10px;
-            padding-bottom: 30px;
-
-            
         }
 
-        li a {
-            text-decoration: none;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00eaff;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
             color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
         }
 
-        li a:hover {
-            color: rgb(0, 136, 255);
+        nav a:hover {
+            color: #00eaff;
         }
 
-        .header {
+        /* Responsive Navbar */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .photo-yourself1 {
-            display: flexbox;
-            width: 30%;
-            float: right;
-        }
-
-        .text-wrapper {
-            align-content: space-around;
-        }
-
-        .text-wrapper h1 {
-            margin: 0;
-        }
-
-        .name-front h2 {
-            margin: 0;
-            font-size: 50px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        .name-back h2 {
-            margin: 0;
-            font-size: 50px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        .line {
-            outline: 1pt solid white;
-        }
-
-        .about-me {
-            height: 350px;
-            padding: 30px;
-            display: flex;
+            justify-content: center;
             align-items: center;
+            flex-direction: column;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?technology,code') no-repeat center center/cover;
+            padding: 20px;
         }
 
-        .myprofile {
-            width: 30%;
-            margin-left: 30px;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        .myprofile img {
-            border-radius: 50%;
-            margin-right: 80px;
+        .hero p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-top: 10px;
         }
 
-        .about-me h3 {
-            float: left;
+        .btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 12px 25px;
+            background: #00eaff;
+            color: black;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
         }
 
-        .point-aboutme {
+        .btn:hover {
+            background: #00b5cc;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .grid {
             display: flex;
-            align-content: space-between;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .point-aboutme ul {
-            font-size: 30px;
-            letter-spacing: 2px;
-            word-spacing: 5px;
-            font-weight: bolder;
-            margin: 0;
-        }
-
-        .point-aboutme ul li {
-            padding: 5px;
-            font-weight: lighter;
-            list-style-type: none;
-            font-size: 20px;
-        }
-
-        .bar-rectangle {
-            display: flexbox;
-            width: 50%;
-            align-content: end;
-            margin-top: 30px;
-        }
-
-        .rectangle {
-            width: 70%;
-            margin: 30px;
-            border-radius: 6px;
-            background-color: rgb(0, 187, 255);
-            height: 12px;
-        }
-
-        .rectangle-group {
+        .card {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            transition: 0.3s;
             position: relative;
-            left: 0px;
-            display: flex;
+            overflow: hidden;
         }
 
-        .group-item {
-            position: relative;
-            top: 10px;
-            left: 0px;
-            border-radius: 6px;
-            background-color: #edecec;
+        .card:hover {
+            transform: translateY(-5px);
+            background: #00eaff;
+            color: black;
+        }
+
+        /* Contact */
+        .contact-form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .contact-form input, .contact-form textarea {
             width: 100%;
-            height: 10px;
-            margin: 17px;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
         }
 
-        .group-inner1 {
-            position: absolute;
-            top: 10px;
-            left: 0px;
-            border-radius: 6px;
-            background-color: #fd6f00;
-            width: 50%;
-            height: 10px;
-            margin: 17px;
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            background: #00eaff;
+            color: black;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .group-inner2 {
-            position: absolute;
-            top: 10px;
-            left: 0px;
-            border-radius: 6px;
-            background-color: #fd6f00;
-            width: 60%;
-            height: 10px;
-            margin: 17px;
+        .contact-form button:hover {
+            background: #00b5cc;
         }
 
-        .group-inner3 {
-            position: absolute;
-            top: 10px;
-            left: 0px;
-            border-radius: 6px;
-            background-color: #fd6f00;
-            width: 80%;
-            height: 10px;
-            margin: 17px;
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            margin-top: 20px;
         }
 
-        .group-inner4 {
-            position: absolute;
-            top: 10px;
-            left: 0px;
-            border-radius: 6px;
-            background-color: #fd6f00;
-            width: 67%;
-            height: 10px;
-            margin: 17px;
-        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
 
-        .group-inner5 {
-            position: absolute;
-            top: 10px;
-            left: 0px;
-            border-radius: 6px;
-            background-color: #fd6f00;
-            width: 85%;
-            height: 10px;
-            margin: 17px;
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                display: block;
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-              <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Resume</a></li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-            <div  class="line"></div>
-          </nav>
-        <div class="header">
-            <div class="text-wrapper">
-                <h1>Hello</h1>
-                <div class="name-front">
-                    <h2>I'm Muhammad Fairus</h2>
-                </div>
-                <div class="name-back">
-                    <h2>Fawas Afanza</h2>
-                </div>
-            </div>
-            <div class="photo-yourself1">
-                <img src="Img/foto-saya.svg" alt="">
-            </div>
-        </div>
-        <div  class="line"></div>
-        <div class="about-me">
-            <div class="myprofile">
-                <img src="Img/my-profile.svg" alt="">
-                
-            </div>
-            <div class="point-aboutme">
-                <ul>About me
-                    <li>UI / UX</li>
-                    
-                    <li>Website Design</li>
-                    <li>App Design</li>
-                    <li>Front-end Developer</li>
-                    <li>IoT Engginer</li>
-                </ul>
-                
-            </div>
-            <div class="bar-rectangle">
-                <div class="rectangle-group">
-                    <div class="group-item"></div>
-                    <div class="group-inner1"></div>
-                </div>
-                <div class="rectangle-group">
-                    <div class="group-item"></div>
-                    <div class="group-inner2"></div>
-                </div>
-                <div class="rectangle-group">
-                    <div class="group-item"></div>
-                    <div class="group-inner3"></div>
-                </div>
-                <div class="rectangle-group">
-                    <div class="group-item"></div>
-                    <div class="group-inner4"></div>
-                </div>
-                <div class="rectangle-group">
-                    <div class="group-item"></div>
-                    <div class="group-inner5"></div>
-                </div>
-            </div>
-        </div>
-        <div  class="line"></div>
-    </header>
-    <script>
 
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Fairus Dev</div>
+            <div class="menu-toggle">&#9776;</div>
+            <nav>
+                <a href="#home">Beranda</a>
+                <a href="#skills">Keahlian</a>
+                <a href="#projects">Proyek</a>
+                <a href="#contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Fairus Afanza</h1>
+        <p>Web Developer | IoT Enthusiast | Frontend Specialist</p>
+        <a href="#contact" class="btn">Hubungi Saya</a>
+    </section>
+
+    <!-- Keahlian -->
+    <section id="skills">
+        <h2>Keahlian</h2>
+        <div class="grid">
+            <div class="card">HTML & CSS</div>
+            <div class="card">JavaScript</div>
+            <div class="card">ReactJS</div>
+            <div class="card">IoT & ESP32</div>
+            <div class="card">Node.js</div>
+        </div>
+    </section>
+
+    <!-- Proyek -->
+    <section id="projects">
+        <h2>Proyek</h2>
+        <div class="grid">
+            <div class="card">Sistem Smart Home IoT</div>
+            <div class="card">E-Commerce dengan ReactJS</div>
+            <div class="card">Aplikasi Bot Telegram</div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact">
+        <h2>Hubungi Saya</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Nama" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Pesan" rows="4" required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Fairus Afanza - Semua Hak Dilindungi</p>
+    </footer>
+
+    <script>
+        // Toggle Menu Responsive
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
     </script>
+
 </body>
 </html>
