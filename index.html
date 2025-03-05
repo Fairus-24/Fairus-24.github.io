@@ -1,284 +1,538 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="Img/Web.ico" type="image/x-icon"/> 
-    <title>Portofolio IT - Fairus</title>
-    <style>
-        /* Import Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="Img/Web.ico" type="image/x-icon" /> 
+  <title>Portofolio IT - Fairus</title>
+  <style>
+    /* Import Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
 
-        body {
-            background: #0f0f0f;
-            color: white;
-            line-height: 1.6;
-        }
+    body {
+      background: #0f0f0f;
+      color: white;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Dark/Light Mode */
+    .light-mode {
+      background: #f4f4f4;
+      color: #333;
+    }
+    .light-mode header {
+      background: rgba(255,255,255,0.9);
+    }
+    .light-mode nav a {
+      color: #333;
+    }
+    .light-mode .logo, 
+    .light-mode .mode-toggle {
+      color: #00aaff;
+    }
+    .light-mode .btn {
+      background: #00aaff;
+      color: white;
+    }
+    
+    /* Header & Navigasi */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 15px 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00eaff;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #00eaff;
+    }
+    /* Tombol Dark/Light Mode */
+    .mode-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    /* Responsive Navbar */
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+      nav.active {
+        display: flex;
+      }
+      nav a {
+        display: block;
+        padding: 10px;
+      }
+    }
 
-        /* Header & Navigasi */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 0;
-            z-index: 1000;
-        }
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      background: url('https://source.unsplash.com/1600x900/?technology,code') no-repeat center center/cover;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #ddd;
+      margin-top: 10px;
+    }
+    .btn {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 12px 25px;
+      background: #00eaff;
+      color: black;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #00b5cc;
+    }
 
-        .nav-container {
-            width: 90%;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Sections */
+    section {
+      padding: 80px 5%;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .card {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      background: #00eaff;
+      color: black;
+    }
+    
+    /* Scroll Reveal Animation */
+    .hidden {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00eaff;
-        }
+    /* Modal Proyek */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1500;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00eaff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        nav {
-            display: flex;
-            gap: 20px;
-        }
+    /* Testimoni */
+    .testimonial {
+      background: #1e1e1e;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 10px;
+      max-width: 400px;
+    }
+    
+    /* GitHub Section */
+    #github {
+      padding: 40px 5%;
+    }
+    #github img {
+      max-width: 100%;
+      height: auto;
+    }
+    .repo {
+      background: #1e1e1e;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+      text-align: left;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: 0.3s;
-        }
+    /* Blog Section */
+    .blog-post {
+      background: #1e1e1e;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      text-align: left;
+    }
 
-        nav a:hover {
-            color: #00eaff;
-        }
+    /* QR Code */
+    #qrcode {
+      margin-top: 20px;
+    }
 
-        /* Responsive Navbar */
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
+    /* Contact */
+    .contact-form {
+      max-width: 500px;
+      margin: auto;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 12px;
+      background: #00eaff;
+      color: black;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contact-form button:hover {
+      background: #00b5cc;
+    }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            background: url('https://source.unsplash.com/1600x900/?technology,code') no-repeat center center/cover;
-            padding: 20px;
-        }
+    /* Live Chat - WhatsApp Button */
+    .whatsapp-chat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      z-index: 2000;
+      text-decoration: none;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 600;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #ddd;
-            margin-top: 10px;
-        }
-
-        .btn {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 12px 25px;
-            background: #00eaff;
-            color: black;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #00b5cc;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .card {
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            width: 250px;
-            text-align: center;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: #00eaff;
-            color: black;
-        }
-
-        /* Contact */
-        .contact-form {
-            max-width: 500px;
-            margin: auto;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 12px;
-            background: #00eaff;
-            color: black;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .contact-form button:hover {
-            background: #00b5cc;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #000;
-            margin-top: 20px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                background: rgba(0, 0, 0, 0.9);
-                width: 100%;
-                text-align: center;
-                padding: 10px 0;
-            }
-
-            nav.active {
-                display: flex;
-            }
-
-            nav a {
-                display: block;
-                padding: 10px;
-            }
-        }
-    </style>
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="nav-container">
-            <div class="logo">Fairus Dev</div>
-            <div class="menu-toggle">&#9776;</div>
-            <nav>
-                <a href="#home">Beranda</a>
-                <a href="#skills">Keahlian</a>
-                <a href="#projects">Proyek</a>
-                <a href="#contact">Kontak</a>
-            </nav>
-        </div>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">Fairus Dev</div>
+      <div class="menu-toggle">&#9776;</div>
+      <nav>
+        <a href="#home">Beranda</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#projects">Proyek</a>
+        <a href="#testimonials">Testimoni</a>
+        <a href="#github">GitHub</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+      <button class="mode-toggle" onclick="toggleMode()">🌙</button>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Fairus Afanza</h1>
-        <p>Web Developer | IoT Enthusiast | Frontend Specialist</p>
-        <a href="#contact" class="btn">Hubungi Saya</a>
-    </section>
+  <!-- Hero Section -->
+  <section id="home" class="hero hidden">
+    <h1>Fairus Afanza</h1>
+    <p>Web Developer | IoT Enthusiast | Frontend Specialist</p>
+    <!-- Tombol Download CV -->
+    <a href="cv_fairus.pdf" class="btn" download>Download CV</a>
+  </section>
 
-    <!-- Keahlian -->
-    <section id="skills">
-        <h2>Keahlian</h2>
-        <div class="grid">
-            <div class="card">HTML & CSS</div>
-            <div class="card">JavaScript</div>
-            <div class="card">ReactJS</div>
-            <div class="card">IoT & ESP32</div>
-            <div class="card">Node.js</div>
-        </div>
-    </section>
+  <!-- Keahlian -->
+  <section id="skills" class="hidden">
+    <h2>Keahlian</h2>
+    <div class="grid">
+      <div class="card">HTML & CSS</div>
+      <div class="card">JavaScript</div>
+      <div class="card">ReactJS</div>
+      <div class="card">IoT & ESP32</div>
+      <div class="card">Node.js</div>
+    </div>
+  </section>
 
-    <!-- Proyek -->
-    <section id="projects">
-        <h2>Proyek</h2>
-        <div class="grid">
-            <div class="card">Sistem Smart Home IoT</div>
-            <div class="card">E-Commerce dengan ReactJS</div>
-            <div class="card">Aplikasi Bot Telegram</div>
-        </div>
-    </section>
+  <!-- Proyek -->
+  <section id="projects" class="hidden">
+    <h2>Proyek</h2>
+    <div class="grid">
+      <!-- Klik pada card akan membuka modal -->
+      <div class="card" onclick="openModal('project1')">Sistem Smart Home IoT</div>
+      <div class="card" onclick="openModal('project2')">E-Commerce dengan ReactJS</div>
+      <div class="card" onclick="openModal('project3')">Aplikasi Bot Telegram</div>
+    </div>
+  </section>
 
-    <!-- Kontak -->
-    <section id="contact">
-        <h2>Hubungi Saya</h2>
-        <form class="contact-form">
-            <input type="text" placeholder="Nama" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Pesan" rows="4" required></textarea>
-            <button type="submit">Kirim</button>
-        </form>
-    </section>
+  <!-- Modal Proyek -->
+  <div class="modal" id="modal-project">
+    <div class="modal-content" id="modal-content">
+      <h2 id="modal-title">Detail Proyek</h2>
+      <p id="modal-description">Deskripsi proyek akan tampil di sini.</p>
+      <button onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Fairus Afanza - Semua Hak Dilindungi</p>
-    </footer>
+  <!-- Testimoni Klien -->
+  <section id="testimonials" class="hidden">
+    <h2>Testimoni Klien</h2>
+    <div class="grid">
+      <div class="testimonial">
+        <p>"Pelayanan yang cepat dan hasil kerja luar biasa. Sangat direkomendasikan!"</p>
+        <p>- Client A</p>
+      </div>
+      <div class="testimonial">
+        <p>"Profesional dan kreatif dalam mengembangkan solusi IT."</p>
+        <p>- Client B</p>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Toggle Menu Responsive
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('nav').classList.toggle('active');
+  <!-- GitHub Section -->
+  <section id="github" class="hidden">
+    <h2>Aktivitas GitHub</h2>
+    <!-- Widget Statistik GitHub (responsive) -->
+    <img src="https://github-readme-stats.vercel.app/api?username=Fairus-24&show_icons=true&theme=dark" alt="GitHub Stats" />
+    <div id="repo-container">
+      <!-- Repository akan ditampilkan di sini -->
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="hidden">
+    <h2>Blog</h2>
+    <div class="grid">
+      <div class="blog-post">
+        <h3>Membangun API dengan Node.js</h3>
+        <p>Pelajari cara membangun API yang efisien dan scalable dengan Node.js...</p>
+      </div>
+      <div class="blog-post">
+        <h3>Menerapkan IoT dalam Kehidupan Sehari-hari</h3>
+        <p>Artikel ini membahas implementasi teknologi IoT dalam berbagai sektor...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QR Code Portofolio -->
+  <section id="qrcode" class="hidden">
+    <h2>QR Code Portofolio</h2>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fairus-portfolio.com" alt="QR Code" />
+  </section>
+
+  <!-- Kontak -->
+  <section id="contact" class="hidden">
+    <h2>Hubungi Saya</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Nama" required />
+      <input type="email" placeholder="Email" required />
+      <textarea placeholder="Pesan" rows="4" required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <!-- Live Chat via WhatsApp -->
+  <a class="whatsapp-chat" href="https://wa.me/6281234567890" target="_blank">💬</a>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Fairus Afanza - Semua Hak Dilindungi</p>
+  </footer>
+
+  <script>
+    // Toggle Responsive Navbar
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+    });
+
+    // Tutup navbar jika link di klik (pada perangkat mobile)
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (nav.classList.contains('active')) {
+          nav.classList.remove('active');
+        }
+      });
+    });
+
+    // Tutup navbar jika klik di luar area navbar (hanya pada perangkat mobile)
+    document.addEventListener('click', function(event) {
+      const isClickInside = nav.contains(event.target) || menuToggle.contains(event.target);
+      if (!isClickInside && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+      }
+    });
+
+    // Dark/Light Mode Toggle
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
+      // Ganti ikon tombol berdasarkan mode
+      const modeBtn = document.querySelector('.mode-toggle');
+      modeBtn.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+    }
+
+    // Scroll Reveal Animation
+    const hiddenElements = document.querySelectorAll('.hidden');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    hiddenElements.forEach(el => observer.observe(el));
+
+    // Modal Proyek
+    const projects = {
+      project1: {
+        title: "Sistem Smart Home IoT",
+        description: "Proyek ini merupakan sistem IoT berbasis ESP32 untuk mengontrol peralatan rumah secara otomatis."
+      },
+      project2: {
+        title: "E-Commerce dengan ReactJS",
+        description: "Pengembangan platform e-commerce dengan antarmuka modern menggunakan ReactJS."
+      },
+      project3: {
+        title: "Aplikasi Bot Telegram",
+        description: "Bot Telegram yang memudahkan interaksi dan automasi tugas harian."
+      }
+    };
+
+    function openModal(projectId) {
+      const modal = document.getElementById("modal-project");
+      document.getElementById("modal-title").textContent = projects[projectId].title;
+      document.getElementById("modal-description").textContent = projects[projectId].description;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal-project").style.display = "none";
+    }
+
+    // Integrasi GitHub API: Fetch 3 repository terbaru (contoh sederhana)
+    async function fetchRepos() {
+      try {
+        const response = await fetch('https://api.github.com/users/Fairus-24/repos?sort=updated&per_page=3');
+        const repos = await response.json();
+        const repoContainer = document.getElementById("repo-container");
+        repos.forEach(repo => {
+          const repoDiv = document.createElement("div");
+          repoDiv.classList.add("repo");
+          repoDiv.innerHTML = `<h3>${repo.name}</h3><p>${repo.description || "Tidak ada deskripsi."}</p>`;
+          repoContainer.appendChild(repoDiv);
         });
-    </script>
+      } catch (error) {
+        console.error("Error fetching repos:", error);
+      }
+    }
+    fetchRepos();
+  </script>
 
 </body>
 </html>
