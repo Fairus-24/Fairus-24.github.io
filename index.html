@@ -6,6 +6,16 @@
   <link rel="icon" href="Img/Web.ico" type="image/x-icon" /> 
   <title>Portofolio IT - Fairus</title>
   <style>
+    /* Variabel Warna */
+    :root {
+      --primary-color: #00eaff;
+      --primary-hover: #00b5cc;
+      --dark-bg: #0f0f0f;
+      --light-bg: #f4f4f4;
+      --dark-text: #aaa;
+      --light-text: #333;
+    }
+
     /* Import Google Font */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -18,28 +28,28 @@
     }
 
     body {
-      background: #0f0f0f;
+      background: var(--dark-bg);
       color: white;
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
     /* Dark/Light Mode */
     .light-mode {
-      background: #f4f4f4;
-      color: #333;
+      background: var(--light-bg);
+      color: var(--light-text);
     }
     .light-mode header {
       background: rgba(255,255,255,0.9);
     }
     .light-mode nav a {
-      color: #333;
+      color: var(--light-text);
     }
     .light-mode .logo, 
     .light-mode .mode-toggle {
-      color: #00aaff;
+      color: var(--primary-color);
     }
     .light-mode .btn {
-      background: #00aaff;
+      background: var(--primary-color);
       color: white;
     }
     
@@ -52,6 +62,7 @@
       background: rgba(0, 0, 0, 0.9);
       padding: 15px 0;
       z-index: 1000;
+      transition: background 0.3s;
     }
     .nav-container {
       width: 90%;
@@ -63,7 +74,7 @@
     .logo {
       font-size: 24px;
       font-weight: bold;
-      color: #00eaff;
+      color: var(--primary-color);
     }
     nav {
       display: flex;
@@ -73,10 +84,10 @@
       color: white;
       text-decoration: none;
       font-size: 18px;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
     nav a:hover {
-      color: #00eaff;
+      color: var(--primary-color);
     }
     /* Tombol Dark/Light Mode */
     .mode-toggle {
@@ -102,7 +113,7 @@
         position: absolute;
         top: 60px;
         right: 0;
-        background: rgba(0, 0, 0, 0.9);
+        background: rgba(0, 0, 0, 0.95);
         width: 100%;
         text-align: center;
         padding: 10px 0;
@@ -118,6 +129,7 @@
 
     /* Hero Section */
     .hero {
+      position: relative;
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -127,10 +139,38 @@
       background: url('https://source.unsplash.com/1600x900/?technology,code') no-repeat center center/cover;
       padding: 20px;
     }
+    /* Overlay agar teks lebih kontras */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    .hero > * {
+      position: relative;
+      z-index: 2;
+    }
+    /* Foto Profil Bulat */
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary-color);
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
     .hero h1 {
       font-size: 3rem;
       font-weight: 600;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      margin-bottom: 10px;
     }
     .hero p {
       font-size: 1.2rem;
@@ -141,16 +181,17 @@
       margin-top: 20px;
       display: inline-block;
       padding: 12px 25px;
-      background: #00eaff;
+      background: var(--primary-color);
       color: black;
       font-size: 1.1rem;
       font-weight: bold;
       border-radius: 5px;
-      transition: 0.3s;
+      transition: background 0.3s, transform 0.3s;
       text-decoration: none;
     }
     .btn:hover {
-      background: #00b5cc;
+      background: var(--primary-hover);
+      transform: translateY(-3px);
     }
 
     /* Sections */
@@ -161,6 +202,17 @@
     h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
+      position: relative;
+    }
+    /* Garis bawah dekoratif */
+    h2::after {
+      content: "";
+      width: 60px;
+      height: 4px;
+      background: var(--primary-color);
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 2px;
     }
     .grid {
       display: flex;
@@ -168,21 +220,32 @@
       flex-wrap: wrap;
       gap: 20px;
     }
-    .card {
+    .card,
+    .award-card,
+    .education-card,
+    .blog-card,
+    .experience-item,
+    .testimonial,
+    .repo {
       background: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover,
+    .award-card:hover,
+    .education-card:hover,
+    .blog-card:hover,
+    .experience-item:hover,
+    .testimonial:hover,
+    .repo:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .card {
       width: 250px;
       text-align: center;
-      transition: 0.3s;
-      position: relative;
-      overflow: hidden;
       cursor: pointer;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      background: #00eaff;
-      color: black;
     }
     
     /* Scroll Reveal Animation */
@@ -217,26 +280,87 @@
       width: 80%;
       max-width: 600px;
       text-align: center;
-      position: relative;
     }
     .modal-content button {
       margin-top: 20px;
       padding: 10px 20px;
-      background: #00eaff;
+      background: var(--primary-color);
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+    .modal-content button:hover {
+      background: var(--primary-hover);
     }
 
-    /* Testimoni */
-    .testimonial {
-      background: #1e1e1e;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 10px;
-      max-width: 400px;
+    /* Sertifikat & Penghargaan */
+    #awards {
+      padding: 40px 5%;
     }
-    
+    .award-card {
+      max-width: 300px;
+      margin: 10px;
+      text-align: left;
+    }
+    .award-card img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .award-card h4 {
+      margin-bottom: 5px;
+    }
+
+    /* Riwayat Pendidikan */
+    #education {
+      padding: 40px 5%;
+    }
+    .education-card {
+      max-width: 300px;
+      margin: 10px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .education-card img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+    .education-info h4 {
+      margin-bottom: 5px;
+    }
+    .education-info p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Pengalaman Kerja */
+    #experience {
+      padding: 40px 5%;
+      text-align: left;
+    }
+    .experience-item {
+      margin: 10px 0;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .experience-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+    .experience-info h4 {
+      margin-bottom: 5px;
+    }
+    .experience-info p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
     /* GitHub Section */
     #github {
       padding: 40px 5%;
@@ -246,25 +370,31 @@
       height: auto;
     }
     .repo {
-      background: #1e1e1e;
-      padding: 15px;
       margin: 10px;
-      border-radius: 5px;
       text-align: left;
     }
 
-    /* Blog Section */
-    .blog-post {
-      background: #1e1e1e;
-      padding: 20px;
-      margin: 15px;
-      border-radius: 10px;
-      text-align: left;
+    /* Blog Section: Card External */
+    #blog {
+      padding: 40px 5%;
     }
-
-    /* QR Code */
-    #qrcode {
-      margin-top: 20px;
+    .blog-card {
+      max-width: 350px;
+      margin: 10px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .blog-card h3 {
+      margin-bottom: 10px;
+    }
+    .blog-card ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    .blog-card ul li {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
     }
 
     /* Contact */
@@ -272,7 +402,8 @@
       max-width: 500px;
       margin: auto;
     }
-    .contact-form input, .contact-form textarea {
+    .contact-form input,
+    .contact-form textarea {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
@@ -282,16 +413,16 @@
     .contact-form button {
       width: 100%;
       padding: 12px;
-      background: #00eaff;
+      background: var(--primary-color);
       color: black;
       font-size: 1.1rem;
       font-weight: bold;
       border: none;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s;
     }
     .contact-form button:hover {
-      background: #00b5cc;
+      background: var(--primary-hover);
     }
 
     /* Live Chat - WhatsApp Button */
@@ -306,14 +437,48 @@
       font-size: 24px;
       z-index: 2000;
       text-decoration: none;
+      transition: transform 0.3s;
+    }
+    .whatsapp-chat:hover {
+      transform: scale(1.1);
     }
 
     /* Footer */
     footer {
-      text-align: center;
-      padding: 20px;
       background: #000;
-      margin-top: 20px;
+      padding: 40px 5%;
+      text-align: center;
+      color: var(--dark-text);
+    }
+    .footer-details {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: var(--primary-color);
+    }
+    .footer-bottom {
+      font-size: 0.9rem;
+    }
+
+    /* Media Query tambahan untuk grid */
+    @media (max-width: 600px) {
+      .grid {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -329,6 +494,9 @@
         <a href="#skills">Keahlian</a>
         <a href="#projects">Proyek</a>
         <a href="#testimonials">Testimoni</a>
+        <a href="#awards">Sertifikat</a>
+        <a href="#education">Pendidikan</a>
+        <a href="#experience">Pengalaman</a>
         <a href="#github">GitHub</a>
         <a href="#blog">Blog</a>
         <a href="#contact">Kontak</a>
@@ -339,7 +507,9 @@
 
   <!-- Hero Section -->
   <section id="home" class="hero hidden">
-    <h1>Fairus Afanza</h1>
+    <!-- Foto Profil Bulat -->
+    <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-pic" />
+    <h1>Muhammad Fairus Fawas Afanza</h1>
     <p>Web Developer | IoT Enthusiast | Frontend Specialist</p>
     <!-- Tombol Download CV -->
     <a href="cv_fairus.pdf" class="btn" download>Download CV</a>
@@ -349,10 +519,10 @@
   <section id="skills" class="hidden">
     <h2>Keahlian</h2>
     <div class="grid">
-      <div class="card">HTML & CSS</div>
+      <div class="card">HTML &amp; CSS</div>
       <div class="card">JavaScript</div>
       <div class="card">ReactJS</div>
-      <div class="card">IoT & ESP32</div>
+      <div class="card">IoT &amp; ESP32</div>
       <div class="card">Node.js</div>
     </div>
   </section>
@@ -361,7 +531,6 @@
   <section id="projects" class="hidden">
     <h2>Proyek</h2>
     <div class="grid">
-      <!-- Klik pada card akan membuka modal -->
       <div class="card" onclick="openModal('project1')">Sistem Smart Home IoT</div>
       <div class="card" onclick="openModal('project2')">E-Commerce dengan ReactJS</div>
       <div class="card" onclick="openModal('project3')">Aplikasi Bot Telegram</div>
@@ -370,7 +539,7 @@
 
   <!-- Modal Proyek -->
   <div class="modal" id="modal-project">
-    <div class="modal-content" id="modal-content">
+    <div class="modal-content">
       <h2 id="modal-title">Detail Proyek</h2>
       <p id="modal-description">Deskripsi proyek akan tampil di sini.</p>
       <button onclick="closeModal()">Tutup</button>
@@ -392,35 +561,95 @@
     </div>
   </section>
 
+  <!-- Sertifikat & Penghargaan -->
+  <section id="awards" class="hidden">
+    <h2>Sertifikat &amp; Penghargaan</h2>
+    <div class="grid">
+      <div class="award-card">
+        <img src="https://via.placeholder.com/300x150" alt="Sertifikat 1" />
+        <h4>Sertifikat Frontend</h4>
+        <p>Diberikan oleh XYZ Institute</p>
+      </div>
+      <div class="award-card">
+        <img src="https://via.placeholder.com/300x150" alt="Penghargaan 1" />
+        <h4>Penghargaan Inovasi</h4>
+        <p>Penghargaan dari ABC Company</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Riwayat Pendidikan -->
+  <section id="education" class="hidden">
+    <h2>Riwayat Pendidikan</h2>
+    <div class="grid">
+      <div class="education-card">
+        <img src="https://via.placeholder.com/50" alt="Logo Universitas" />
+        <div class="education-info">
+          <h4>Universitas XYZ</h4>
+          <p>2015 - 2019</p>
+          <p>Teknik Informatika</p>
+        </div>
+      </div>
+      <div class="education-card">
+        <img src="https://via.placeholder.com/50" alt="Logo SMA" />
+        <div class="education-info">
+          <h4>SMA ABC</h4>
+          <p>2012 - 2015</p>
+          <p>Ilmu Pengetahuan Umum</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pengalaman Kerja -->
+  <section id="experience" class="hidden">
+    <h2>Pengalaman Kerja</h2>
+    <div class="experience-item">
+      <img src="https://via.placeholder.com/50" alt="Logo Perusahaan 1" />
+      <div class="experience-info">
+        <h4>Web Developer di PT. Teknologi Maju</h4>
+        <p>2020 - Sekarang</p>
+        <p>Bertanggung jawab dalam pengembangan aplikasi web dan optimasi performa.</p>
+      </div>
+    </div>
+    <div class="experience-item">
+      <img src="https://via.placeholder.com/50" alt="Logo Perusahaan 2" />
+      <div class="experience-info">
+        <h4>Internship di Startup Inovatif</h4>
+        <p>2019 - 2020</p>
+        <p>Mendukung tim IT dalam pengembangan dan pemeliharaan sistem internal.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- GitHub Section -->
   <section id="github" class="hidden">
     <h2>Aktivitas GitHub</h2>
-    <!-- Widget Statistik GitHub (responsive) -->
     <img src="https://github-readme-stats.vercel.app/api?username=Fairus-24&show_icons=true&theme=dark" alt="GitHub Stats" />
-    <div id="repo-container">
-      <!-- Repository akan ditampilkan di sini -->
-    </div>
+    <div id="repo-container"></div>
   </section>
 
-  <!-- Blog -->
+  <!-- Blog Section: External Blog Card -->
   <section id="blog" class="hidden">
     <h2>Blog</h2>
     <div class="grid">
-      <div class="blog-post">
+      <div class="blog-card" onclick="window.open('https://externalblog.com/post1','_blank')">
         <h3>Membangun API dengan Node.js</h3>
-        <p>Pelajari cara membangun API yang efisien dan scalable dengan Node.js...</p>
+        <ul>
+          <li>Struktur kode modular</li>
+          <li>Optimasi performa</li>
+          <li>Implementasi RESTful</li>
+        </ul>
       </div>
-      <div class="blog-post">
+      <div class="blog-card" onclick="window.open('https://externalblog.com/post2','_blank')">
         <h3>Menerapkan IoT dalam Kehidupan Sehari-hari</h3>
-        <p>Artikel ini membahas implementasi teknologi IoT dalam berbagai sektor...</p>
+        <ul>
+          <li>Studi kasus nyata</li>
+          <li>Integrasi sensor</li>
+          <li>Manfaat teknologi IoT</li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- QR Code Portofolio -->
-  <section id="qrcode" class="hidden">
-    <h2>QR Code Portofolio</h2>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fairus-portfolio.com" alt="QR Code" />
   </section>
 
   <!-- Kontak -->
@@ -439,7 +668,22 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Fairus Afanza - Semua Hak Dilindungi</p>
+    <div class="footer-details">
+      <p>Jl. Contoh Alamat No.123, Kota Contoh, Indonesia</p>
+      <p>Email: bisnis@fairusdev.com | Telepon: +62 812-3456-7890</p>
+    </div>
+    <div class="social-icons">
+      <a href="https://instagram.com/yourprofile" target="_blank">📸</a>
+      <a href="https://youtube.com/yourchannel" target="_blank">▶️</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">in</a>
+      <a href="https://wa.me/6281234567890" target="_blank">💬</a>
+      <a href="https://linktr.ee/yourprofile" target="_blank">🔗</a>
+      <a href="https://github.com/yourprofile" target="_blank">🐙</a>
+      <a href="https://wokwi.com/projects/yourproject" target="_blank">⚡</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Fairus Afanza - Semua Hak Dilindungi</p>
+    </div>
   </footer>
 
   <script>
@@ -460,7 +704,7 @@
       });
     });
 
-    // Tutup navbar jika klik di luar area navbar (hanya pada perangkat mobile)
+    // Tutup navbar jika klik di luar area navbar (pada perangkat mobile)
     document.addEventListener('click', function(event) {
       const isClickInside = nav.contains(event.target) || menuToggle.contains(event.target);
       if (!isClickInside && nav.classList.contains('active')) {
@@ -471,7 +715,6 @@
     // Dark/Light Mode Toggle
     function toggleMode() {
       document.body.classList.toggle('light-mode');
-      // Ganti ikon tombol berdasarkan mode
       const modeBtn = document.querySelector('.mode-toggle');
       modeBtn.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
     }
